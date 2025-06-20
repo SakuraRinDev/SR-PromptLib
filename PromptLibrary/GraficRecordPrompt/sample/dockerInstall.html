@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker導入手順ガイド - グラフィックレコード風インフォグラフィック</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* --- 🎨 デザインシステム：CSS変数定義 --- */
+        :root {
+            /* Sakura-Blue パレット */
+            --primary-color: #1E3A8A;
+            --secondary-color: #3B82F6;
+            --accent-color: #60A5FA;
+            --neon-blue: #00D4FF;
+            --bg-dark: #FFFFFF;
+            --bg-light: #F5F5F5;
+            
+            /* テキストカラー */
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+
+            /* タイポグラフィ */
+            --font-heading-jp: 'Shippori Mincho', serif;
+            --font-heading-en: 'Bebas Neue', cursive;
+            --font-body: 'Noto Sans JP', sans-serif;
+
+            /* レイアウト */
+            --spacing-unit: 8px;
+            --content-width: 1200px;
+            --border-radius: 12px;
+        }
+
+        /* --- 🌐 グローバルスタイル & リセット --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- 🌃 背景ワイヤーフレーム --- */
+        #wireframe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        /* --- 🔧 編集モードボタン --- */
+        #toggleEdit {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            padding: 10px 20px;
+            background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #toggleEdit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        #toggleEdit.editing {
+            background: #e53e3e; /* 赤色で編集中であることを示す */
+        }
+
+        /* --- 📄 コンテンツコンテナ --- */
+        .container {
+            width: 90%;
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 64px 0;
+        }
+        
+        section {
+            margin-bottom: 64px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- ✒️ タイポグラフィ --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-family: var(--font-heading-jp);
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(45deg, #0048A8, #0070FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h2 {
+            font-family: var(--font-heading-jp);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #002F6F;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        h3 {
+            font-family: var(--font-heading-jp);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #0048A8;
+            margin-bottom: 1rem;
+        }
+
+        .bebas {
+            font-family: var(--font-heading-en);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 700;
+            position: relative;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: var(--accent-color);
+        }
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        code {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+            background-color: var(--bg-light);
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 6px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5em;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+            font-size: 1rem;
+        }
+
+
+        /* --- 🧩 レイアウトコンポーネント --- */
+        header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .header-title {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .header-info {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+        
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .two-column-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .card {
+            background-color: var(--bg-dark);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%; /* グリッドアイテムの高さを揃える */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+        }
+        .card .step-number {
+            font-family: var(--font-heading-en);
+            font-size: 4rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 32px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 編集モードボタン -->
+    <button id="toggleEdit">編集モード</button>
+
+    <!-- 背景アニメーション用キャンバス -->
+    <canvas id="wireframe-bg"></canvas>
+
+    <div class="main-content">
+        <header>
+            <div class="header-title">グラフィックレコード風ガイド</div>
+            <div class="header-info">
+                <span id="current-date"></span><br>
+                出典: Docker公式サイト
+            </div>
+        </header>
+
+        <main class="container">
+            <section id="intro">
+                <h1>爆速 Docker<br>入門ガイド</h1>
+                <p class="subtitle">コンテナ技術を体験する最初の一歩</p>
+            </section>
+            
+            <section id="what-is-docker">
+                <h2><span class="bebas">What's Docker?</span> 🐳 Dockerって何？</h2>
+                <div class="two-column-grid">
+                    <div class="card">
+                        <p>PCの中に、OSごと環境を丸ごとコピーできる「コンテナ」と呼ばれる箱を作る技術です。<br><br>
+                        この箱を使えば、開発環境の構築は一瞬で完了。チームメンバー全員が、寸分違わぬ同じ環境で開発を進めることができます。</p>
+                    </div>
+                    <div class="card">
+                        <h3>主なメリット</h3>
+                        <ul>
+                            <li>✅ <strong>環境構築が秒速</strong> - 面倒な設定はもう不要！</li>
+                            <li>✅ <strong>チーム開発が円滑に</strong> - 「私のPCでだけ動かない…」を撲滅！</li>
+                            <li>✅ <strong>本番環境との差を最小化</strong> - デプロイ時のトラブルを未然に防ぐ！</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="steps">
+                <h2><span class="bebas">4 Steps to Start</span> 🚀 さあ、始めよう！</h2>
+                <div class="two-column-grid">
+                    <div class="card">
+                        <div class="step-number">01</div>
+                        <h3>公式サイトへアクセス</h3>
+                        <p>まずは、お使いのOS（Windows/Mac/Linux）に合ったインストーラーを手に入れましょう。<br>下のリンクから公式サイトへ飛べます。</p>
+                        <a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop 公式サイト</a>
+                    </div>
+                    <div class="card">
+                        <div class="step-number">02</div>
+                        <h3>ダウンロードとインストール</h3>
+                        <p>ダウンロードしたファイルを実行し、画面の指示に従ってインストールを進めます。難しい設定は特にないので、サクサク進めましょう！</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-number">03</div>
+                        <h3>Docker Desktopを起動</h3>
+                        <p>インストールが終わったらDocker Desktopを起動します。メニューバー（タスクトレイ）にクジラのアイコン 🐳 が表示され、アイコンが動かなくなったら準備完了です。</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-number">04</div>
+                        <h3>ターミナルで動作確認</h3>
+                        <p>最後に、ターミナル（WindowsならPowerShellやコマンドプロンプト）を開いて、魔法の呪文を唱えます。</p>
+                        <pre><code>docker run hello-world</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="result">
+                <h2><span class="bebas">Congratulations!</span> 🎉 動作確認</h2>
+                <div class="glass-card">
+                    <h3>「Hello from Docker!」</h3>
+                    <p>こんなメッセージが表示されたら大成功です！<br>
+                    あなたはもう、コンテナ技術への大きな一歩を踏み出しました。<br>
+                    次は <code>Dockerfile</code> を学んで、自分だけの開発環境を作ってみましょう！
+                    </p>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Infographic. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 🔧 編集モード機能 ---
+        const toggleBtn = document.getElementById('toggleEdit');
+        let isEditing = false;
+        if (toggleBtn) {
+            toggleBtn.onclick = () => {
+                isEditing = !isEditing;
+                // 'contentEditable' は body 全体よりも、編集させたい範囲を限定する方が安全
+                const editableArea = document.querySelector('.main-content');
+                if (editableArea) {
+                    editableArea.contentEditable = isEditing;
+                }
+                document.designMode = isEditing ? 'on' : 'off';
+                
+                if (isEditing) {
+                    toggleBtn.textContent = '終了 (保存: 右クリック -> 名前を付けてページを保存)';
+                    toggleBtn.classList.add('editing');
+                } else {
+                    toggleBtn.textContent = '編集モード';
+                    toggleBtn.classList.remove('editing');
+                    // 編集モードをオフにしたら designMode も必ずオフにする
+                    document.designMode = 'off';
+                }
+            };
+        }
+
+        // --- 日付の表示 ---
+        const dateElement = document.getElementById('current-date');
+        if (dateElement) {
+            dateElement.textContent = new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        
+        // --- ✨ スクロール時のフェードイン効果 ---
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- 🌃 Three.js ワイヤーフレーム背景 ---
+        const canvas = document.getElementById('wireframe-bg');
+        if (canvas) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const group = new THREE.Group();
+            scene.add(group);
+
+            const material = new THREE.LineBasicMaterial({
+                color: 0x60A5FA, // CSS変数 --accent-color に近い色
+                transparent: true,
+                opacity: 0.5
+            });
+
+            // 仕様に基づいたビル生成
+            const grid_size = 20;
+            const grid_spacing = 80;
+            const taper_min = 0.4;
+            const taper_max = 1.0;
+            const spire_chance = 0.25;
+
+            for (let i = 0; i < grid_size; i++) {
+                for (let j = 0; j < grid_size; j++) {
+                    const height = Math.random() * 200 + 50;
+                    const taper = Math.random() * (taper_max - taper_min) + taper_min;
+                    
+                    const geometry = new THREE.BoxGeometry(30, height, 30);
+                    
+                    // テーパー（先細り）処理
+                    geometry.attributes.position.array.forEach((val, index) => {
+                        if (index % 3 === 0 && geometry.attributes.position.array[index + 1] > 0) { // x-vertex of top face
+                            geometry.attributes.position.array[index] *= taper;
+                        } else if (index % 3 === 2 && geometry.attributes.position.array[index - 1] > 0) { // z-vertex of top face
+                            geometry.attributes.position.array[index] *= taper;
+                        }
+                    });
+                    geometry.attributes.position.needsUpdate = true;
+                    
+                    const edges = new THREE.EdgesGeometry(geometry);
+                    const line = new THREE.LineSegments(edges, material);
+                    
+                    line.position.x = (i - grid_size / 2) * grid_spacing;
+                    line.position.z = (j - grid_size / 2) * grid_spacing;
+                    line.position.y = -height / 2;
+                    group.add(line);
+
+                    // スパイア（尖塔）生成
+                    if (Math.random() < spire_chance) {
+                        const spireHeight = Math.random() * 50 + 20;
+                        const spireGeom = new THREE.ConeGeometry(15 * taper, spireHeight, 4);
+                        const spireEdges = new THREE.EdgesGeometry(spireGeom);
+                        const spireLine = new THREE.LineSegments(spireEdges, material);
+                        spireLine.position.copy(line.position);
+                        spireLine.position.y += height / 2 + spireHeight / 2;
+                        group.add(spireLine);
+                    }
+                }
+            }
+
+            camera.position.z = 400;
+            camera.position.y = 100;
+            group.rotation.x = -Math.PI / 4;
+
+            let mouseX = 0, mouseY = 0;
+            const rotationSpeed = 0.0003;
+            const waveAmplitude = 80;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - window.innerWidth / 2);
+                mouseY = (event.clientY - window.innerHeight / 2);
+            });
+
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const elapsedTime = clock.getElapsedTime();
+                
+                // パララックス回転
+                group.rotation.y += (mouseX * rotationSpeed - group.rotation.y) * 0.05;
+                group.rotation.x += (-mouseY * rotationSpeed - group.rotation.x + (-Math.PI / 4)) * 0.05;
+
+                // 波動エフェクト
+                group.children.forEach(child => {
+                   if (child instanceof THREE.LineSegments) {
+                       child.position.y += Math.sin(elapsedTime + child.position.x * 0.01) * 0.1;
+                   }
+                });
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            });
+        }
+    });
+    </script>
+</body>
+</html>
