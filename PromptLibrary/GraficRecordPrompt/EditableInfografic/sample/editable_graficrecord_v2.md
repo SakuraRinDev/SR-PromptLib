@@ -53,7 +53,7 @@
 3. **編集モードボタン（必須）**
    - `id="toggleEdit"` ボタンを固定表示。
    - クリックで `document.body.contentEditable` & `document.designMode` を ON/OFF。
-   - ON 時のボタンテキスト: `終了(保存: ファイル → 名前を付けてページを保存)`。
+   - ON 時のボタンテキスト: `終了`。
 
 <!-- ❶ 編集モードボタン（参考コード） -->
 <pre><code>&lt;button id="toggleEdit" style="position:fixed;top:15px;right:15px;z-index:9999;"&gt;編集モード&lt;/button&gt;
@@ -64,7 +64,7 @@
     editing = !editing;
     document.body.contentEditable = editing;          // ページ全体を editable に
     document.designMode     = editing ? 'on' : 'off'; // 矢印キーでカーソル移動可
-    btn.textContent         = editing ? '終了(保存:右クリック-&gt;名前を付けて保存)' : '編集モード';
+    btn.textContent         = editing ? '終了' : '編集';
   };
 &lt;/script&gt;
 </code></pre>
@@ -75,6 +75,8 @@
    - `id="wireframe-bg"` キャンバスを推奨。3D シティや波形など **ラインアート** を実装し、FPS 60 を維持するよう最適化する。
 5. CSS 変数 (`:root {--primary-color: …}`) でテーマカラーを一元管理。
 6. 各セクションを `<section>` で区切り、Intersection Observer でフェードイン。
+7. HTML保存ボタンを画面左上側に実装する(クリックするとDL)。
+例    <div class="save-controls"><button class="btn-save" onclick="saveHTMLFile()">💾 HTML保存</button></div>
 
 ---
 

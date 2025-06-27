@@ -385,10 +385,10 @@
                 document.designMode = isEditing ? 'on' : 'off';
                 
                 if (isEditing) {
-                    toggleBtn.textContent = '終了 (保存: 右クリック -> 名前を付けてページを保存)';
+                    toggleBtn.textContent = '終了';
                     toggleBtn.classList.add('editing');
                 } else {
-                    toggleBtn.textContent = '編集モード';
+                    toggleBtn.textContent = '編集';
                     toggleBtn.classList.remove('editing');
                     // 編集モードをオフにしたら designMode も必ずオフにする
                     document.designMode = 'off';
