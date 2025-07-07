@@ -1015,17 +1015,20 @@
             
             .theme-switcher {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 5px;
                 padding: 8px;
                 top: 10px;
                 right: 10px;
+                width: auto;
+                min-width: 120px;
             }
             
             .theme-btn {
                 padding: 8px 12px;
-                font-size: 12px;
+                font-size: 11px;
                 white-space: nowrap;
+                text-align: center;
             }
             
             .header {
@@ -1218,24 +1221,69 @@
             .theme-switcher {
                 flex-direction: column;
                 gap: 3px;
+                width: 100px;
+                right: 5px;
+                top: 5px;
             }
             
             .theme-btn {
-                padding: 6px 10px;
-                font-size: 11px;
+                padding: 6px 8px;
+                font-size: 10px;
             }
             
             .header {
-                padding: 40px 15px;
+                padding: 30px 10px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+            
+            .header p {
+                font-size: 16px;
             }
             
             .section {
-                padding: 20px 10px;
+                padding: 15px 8px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 20px;
             }
             
             .responsive-layout::before {
-                font-size: 10px;
-                padding: 3px 6px;
+                font-size: 9px;
+                padding: 2px 4px;
+            }
+            
+            .breakpoint-card {
+                padding: 15px;
+            }
+            
+            .breakpoint-title {
+                font-size: 16px;
+            }
+            
+            .breakpoint-range {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+            
+            .device-icon {
+                font-size: 32px;
+            }
+            
+            .practice-card {
+                padding: 20px;
+            }
+            
+            .practice-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+                top: -15px;
             }
         }
     </style>
@@ -1630,28 +1678,28 @@
                 </div>
                 
                 <!-- パフォーマンス最適化 -->
-                <div style="background: rgba(0,188,212,0.1); padding: 30px; border-radius: 15px; margin-top: 40px;">
-                    <h4 style="margin-bottom: 20px;">📊 パフォーマンス最適化</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div>
-                            <h5 style="color: #00BCD4; margin-bottom: 10px;">画像最適化</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                <div style="background: rgba(0,188,212,0.1); padding: 20px; border-radius: 15px; margin-top: 40px;">
+                    <h4 style="margin-bottom: 20px; font-size: 18px; text-align: center;">📊 パフォーマンス最適化</h4>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #00BCD4;">
+                            <h5 style="color: #00BCD4; margin-bottom: 10px; font-size: 14px;">画像最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• WebP形式使用</li>
                                 <li>• レスポンシブ画像</li>
                                 <li>• 遅延読み込み</li>
                             </ul>
                         </div>
-                        <div>
-                            <h5 style="color: #00BCD4; margin-bottom: 10px;">CSS最適化</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #00BCD4;">
+                            <h5 style="color: #00BCD4; margin-bottom: 10px; font-size: 14px;">CSS最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• クリティカルCSS</li>
                                 <li>• 不要セレクタ削除</li>
                                 <li>• グリッド優先使用</li>
                             </ul>
                         </div>
-                        <div>
-                            <h5 style="color: #00BCD4; margin-bottom: 10px;">JS最適化</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #00BCD4;">
+                            <h5 style="color: #00BCD4; margin-bottom: 10px; font-size: 14px;">JS最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• 非同期読み込み</li>
                                 <li>• バンドルサイズ削減</li>
                                 <li>• キャッシュ活用</li>
@@ -1661,28 +1709,28 @@
                 </div>
                 
                 <!-- アクセシビリティ配慮 -->
-                <div style="background: rgba(96,165,250,0.1); padding: 30px; border-radius: 15px; margin-top: 20px;">
-                    <h4 style="margin-bottom: 20px;">♿ アクセシビリティ配慮</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div>
-                            <h5 style="color: #60A5FA; margin-bottom: 10px;">タッチターゲット</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                <div style="background: rgba(96,165,250,0.1); padding: 20px; border-radius: 15px; margin-top: 20px;">
+                    <h4 style="margin-bottom: 20px; font-size: 18px; text-align: center;">♿ アクセシビリティ配慮</h4>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #60A5FA;">
+                            <h5 style="color: #60A5FA; margin-bottom: 10px; font-size: 14px;">タッチターゲット</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• 最小44px × 44px</li>
                                 <li>• 適切な間隔確保</li>
                                 <li>• ホバー状態明確化</li>
                             </ul>
                         </div>
-                        <div>
-                            <h5 style="color: #60A5FA; margin-bottom: 10px;">テキスト可読性</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #60A5FA;">
+                            <h5 style="color: #60A5FA; margin-bottom: 10px; font-size: 14px;">テキスト可読性</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• コントラスト比4.5:1</li>
                                 <li>• 最小16pxフォント</li>
                                 <li>• 行間1.5以上</li>
                             </ul>
                         </div>
-                        <div>
-                            <h5 style="color: #60A5FA; margin-bottom: 10px;">ナビゲーション</h5>
-                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #60A5FA;">
+                            <h5 style="color: #60A5FA; margin-bottom: 10px; font-size: 14px;">ナビゲーション</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.6;">
                                 <li>• キーボード操作対応</li>
                                 <li>• フォーカス状態表示</li>
                                 <li>• スクリーンリーダー対応</li>

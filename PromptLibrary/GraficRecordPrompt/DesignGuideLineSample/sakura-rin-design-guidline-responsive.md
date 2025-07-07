@@ -203,6 +203,8 @@ window.onload = function() {
 
 ## 実装時の注意点
 
+#### HTMLファイル1枚にまとめる事
+
 ### HTML構造
 ```html
 <div class="container">
@@ -231,19 +233,3 @@ window.onload = function() {
 
 ---
 
-## ファイル構成
-
-```
-sakura-rin-design-system/
-├── index.html (メインガイドライン)
-├── css/
-│   ├── base.css (基本スタイル)
-│   ├── themes.css (テーマ定義)
-│   └── responsive.css (レスポンシブ)
-├── js/
-│   └── theme-switcher.js (テーマ切り替え)
-└── assets/
-    └── fonts/ (フォントファイル)
-```
-
-この設定プロンプトに従って実装することで、統一性のある美しいインフォグラフィックデザインシステムを構築できます。
