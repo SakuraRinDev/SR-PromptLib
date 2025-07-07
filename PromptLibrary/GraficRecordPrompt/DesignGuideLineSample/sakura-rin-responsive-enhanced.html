@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Rin インフォグラフィック デザインガイドライン</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* テーマ切り替えボタン */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255,255,255,0.95);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .theme-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Kiwi Maru', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .theme-btn.active {
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        #theme1-btn {
+            background: #00BCD4;
+            color: white;
+        }
+        
+        #theme2-btn {
+            background: #1E3A5F;
+            color: white;
+        }
+        
+        /* 共通スタイル */
+        body {
+            font-family: 'Kiwi Maru', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* テーマ1（ライトテーマ - ソーダブルー） */
+        body.theme1 {
+            background-color: #E0F7FA;
+            color: #006064;
+        }
+        
+        body.theme1 .header {
+            background: linear-gradient(135deg, #00ACC1 0%, #0097A7 100%);
+            color: white;
+        }
+        
+        body.theme1 .section {
+            background: #FFFFFF;
+            box-shadow: 0 10px 40px rgba(0, 172, 193, 0.08);
+        }
+        
+        body.theme1 .section-title {
+            color: #00838F;
+        }
+        
+        body.theme1 .section-title::after {
+            background: #00BCD4;
+        }
+        
+        body.theme1 .typography-item {
+            background: #E8F5F7;
+            border-left: 5px solid #00BCD4;
+        }
+        
+        body.theme1 .font-sample {
+            color: #00838F;
+        }
+        
+        body.theme1 .theme-card {
+            background: #F0FCFD;
+            border: 2px solid #80DEEA;
+        }
+        
+        body.theme1 .theme-title {
+            color: #00838F;
+        }
+        
+        body.theme1 .color-label {
+            color: #37474F;
+        }
+        
+        body.theme1 .color-code {
+            color: #546E7A;
+        }
+        
+        body.theme1 .grid-demo {
+            background: #E8F5F7;
+        }
+        
+        body.theme1 .grid-demo-title {
+            color: #00838F;
+        }
+        
+        body.theme1 .grid-item {
+            background: #00BCD4;
+            color: white;
+        }
+        
+        body.theme1 .component-example {
+            border: 2px solid #80DEEA;
+            background: #FAFEFF;
+        }
+        
+        body.theme1 .component-title {
+            color: #00838F;
+        }
+        
+        body.theme1 .animation-box {
+            background: #00BCD4;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.3);
+        }
+        
+        body.theme1 .spacing-box {
+            background: #00ACC1;
+        }
+        
+        body.theme1 .spacing-label {
+            color: #37474F;
+        }
+        
+        body.theme1 .shadow-box {
+            background: white;
+            color: #00838F;
+        }
+        
+        body.theme1 .code-block {
+            background: #263238;
+            color: #B2DFDB;
+        }
+        
+        body.theme1 .code-comment {
+            color: #80CBC4;
+        }
+        
+        body.theme1 .responsive-demo {
+            background: #E8F5F7;
+        }
+        
+        body.theme1 .device-box {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 172, 193, 0.08);
+        }
+        
+        body.theme1 .device-label {
+            color: #00838F;
+        }
+        
+        body.theme1 .device-spec {
+            color: #37474F;
+        }
+        
+        body.theme1 .theme-switch-demo {
+            background: #E8F5F7;
+        }
+        
+        body.theme1 .switch-container {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 172, 193, 0.1);
+        }
+        
+        body.theme1 .practice-card {
+            background: #E8F5F7;
+            border: 2px solid #00BCD4;
+        }
+        
+        body.theme1 .practice-icon {
+            background: #00BCD4;
+            color: white;
+        }
+        
+        body.theme1 .practice-title {
+            color: #00838F;
+        }
+        
+        body.theme1 .practice-text {
+            color: #37474F;
+        }
+        
+        body.theme1 .footer {
+            color: #37474F;
+        }
+        
+        body.theme1 .footer-logo {
+            color: #00838F;
+        }
+        
+        body.theme1 h3 {
+            color: #00BCD4;
+        }
+        
+        body.theme1 .subtitle-text {
+            color: #37474F;
+        }
+        
+        body.theme1 .primary-btn {
+            background: #00BCD4;
+            color: white;
+        }
+        
+        body.theme1 .secondary-btn {
+            background: #00ACC1;
+            color: white;
+        }
+        
+        body.theme1 .outline-btn {
+            background: white;
+            color: #00BCD4;
+            border: 2px solid #00BCD4;
+        }
+        
+        body.theme1 .breakpoint-card {
+            background: white;
+            border: 2px solid #80DEEA;
+        }
+        
+        body.theme1 .breakpoint-title {
+            color: #00838F;
+        }
+        
+        /* テーマ2（ダークテーマ - コバルトナイト） */
+        body.theme2 {
+            background-color: #0C1929;
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .header {
+            background: linear-gradient(135deg, #1E3A5F 0%, #0C1929 100%);
+            color: white;
+        }
+        
+        body.theme2 .section {
+            background: #1E3A5F;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        
+        body.theme2 .section-title {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .section-title::after {
+            background: #60A5FA;
+        }
+        
+        body.theme2 .typography-item {
+            background: #2B4C6F;
+            border-left: 5px solid #60A5FA;
+        }
+        
+        body.theme2 .font-sample {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .theme-card {
+            background: #2B4C6F;
+            border: 2px solid #3B5575;
+        }
+        
+        body.theme2 .theme-title {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .color-label {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .color-code {
+            color: #94A3B8;
+        }
+        
+        body.theme2 .grid-demo {
+            background: #2B4C6F;
+        }
+        
+        body.theme2 .grid-demo-title {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .grid-item {
+            background: #60A5FA;
+            color: white;
+        }
+        
+        body.theme2 .component-example {
+            border: 2px solid #3B5575;
+            background: #2B4C6F;
+        }
+        
+        body.theme2 .component-title {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .animation-box {
+            background: #60A5FA;
+            color: white;
+            box-shadow: 0 5px 20px rgba(96, 165, 250, 0.4);
+        }
+        
+        body.theme2 .spacing-box {
+            background: #60A5FA;
+        }
+        
+        body.theme2 .spacing-label {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .shadow-box {
+            background: #2B4C6F;
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .code-block {
+            background: #020617;
+            color: #93BBFB;
+        }
+        
+        body.theme2 .code-comment {
+            color: #60A5FA;
+        }
+        
+        body.theme2 .responsive-demo {
+            background: #2B4C6F;
+        }
+        
+        body.theme2 .device-box {
+            background: #3B5575;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        body.theme2 .device-label {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .device-spec {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .theme-switch-demo {
+            background: #2B4C6F;
+        }
+        
+        body.theme2 .switch-container {
+            background: #3B5575;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        body.theme2 .practice-card {
+            background: #2B4C6F;
+            border: 2px solid #60A5FA;
+        }
+        
+        body.theme2 .practice-icon {
+            background: #60A5FA;
+            color: white;
+        }
+        
+        body.theme2 .practice-title {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 .practice-text {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .footer {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .footer-logo {
+            color: #F0F9FF;
+        }
+        
+        body.theme2 h3 {
+            color: #60A5FA;
+        }
+        
+        body.theme2 .subtitle-text {
+            color: #CBD5E1;
+        }
+        
+        body.theme2 .primary-btn {
+            background: #60A5FA;
+            color: white;
+        }
+        
+        body.theme2 .secondary-btn {
+            background: #3B5575;
+            color: white;
+        }
+        
+        body.theme2 .outline-btn {
+            background: transparent;
+            color: #60A5FA;
+            border: 2px solid #60A5FA;
+        }
+        
+        body.theme2 .theme-card-inner {
+            background: #3B5575;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        body.theme2 .breakpoint-card {
+            background: #3B5575;
+            border: 2px solid #60A5FA;
+        }
+        
+        body.theme2 .breakpoint-title {
+            color: #F0F9FF;
+        }
+        
+        /* 共通スタイル（テーマ非依存） */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            padding: 80px 40px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 20s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+        
+        .header h1 {
+            font-size: 64px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 24px;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section {
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+        
+        .typography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .typography-item {
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .font-sample {
+            margin: 15px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .font-500 { font-weight: 500; }
+        .font-400 { font-weight: 400; }
+        .font-300 { font-weight: 300; }
+        
+        .color-themes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .theme-card {
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .color-box {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .color-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .color-swatch {
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .color-label {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .color-code {
+            font-size: 12px;
+            font-family: monospace;
+            transition: color 0.3s ease;
+        }
+        
+        .grid-demo {
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .grid-demo-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .grid-example {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .grid-item {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        @media (max-width: 450px) {
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .component-example {
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .component-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .animation-demo {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        .animation-box {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.1);
+        }
+        
+        .rotating {
+            animation: rotate 25s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .spacing-demo {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        
+        .spacing-item {
+            text-align: center;
+        }
+        
+        .spacing-box {
+            margin-bottom: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .spacing-label {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .shadow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .shadow-box {
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .shadow-normal {
+            box-shadow: 0 5px 20px rgba(68,85,102,0.05);
+        }
+        
+        .shadow-hover {
+            box-shadow: 0 15px 40px rgba(25,146,212,0.15);
+        }
+        
+        .shadow-emphasis {
+            box-shadow: 0 20px 60px rgba(68,85,102,0.3);
+        }
+        
+        .responsive-demo {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .device-box {
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .device-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .device-label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .device-spec {
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .theme-switch-demo {
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .switch-container {
+            display: inline-flex;
+            gap: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .switch-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Kiwi Maru', sans-serif;
+        }
+        
+        .switch-btn-light {
+            background: #00BCD4;
+            color: white;
+        }
+        
+        .switch-btn-dark {
+            background: #1E3A5F;
+            color: white;
+        }
+        
+        .switch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .code-block {
+            padding: 30px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .code-comment {
+            transition: color 0.3s ease;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .practice-card {
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .practice-icon {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .practice-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .practice-text {
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .subtitle-text {
+            transition: color 0.3s ease;
+        }
+        
+        button {
+            font-family: 'Kiwi Maru', sans-serif;
+        }
+        
+        .btn-demo {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-demo button {
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        /* レスポンシブデザイン強化スタイル */
+        .breakpoint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .breakpoint-card {
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .breakpoint-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .breakpoint-range {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #00BCD4;
+        }
+        
+        .breakpoint-changes {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .breakpoint-changes li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(128, 222, 234, 0.2);
+            font-size: 14px;
+        }
+        
+        .breakpoint-changes li:last-child {
+            border-bottom: none;
+        }
+        
+        .responsive-example {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .responsive-layout {
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #00BCD4;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .responsive-layout::before {
+            content: attr(data-size);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #00BCD4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .mobile-first-demo {
+            margin: 30px 0;
+        }
+        
+        .mobile-first-code {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00BCD4;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #2d3748;
+            margin: 20px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .theme-switcher {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                padding: 8px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .theme-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            
+            .header {
+                padding: 60px 30px;
+            }
+            
+            .header h1 {
+                font-size: 48px;
+            }
+            
+            .header p {
+                font-size: 20px;
+            }
+            
+            .section {
+                padding: 40px 20px;
+                border-radius: 15px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .typography-grid,
+            .color-themes {
+                grid-template-columns: 1fr;
+            }
+            
+            .component-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .component-example {
+                padding: 20px;
+            }
+            
+            .grid-responsive {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .grid-item {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+            
+            .btn-demo {
+                flex-direction: column;
+            }
+            
+            .btn-demo button {
+                width: 100%;
+                min-width: unset;
+            }
+            
+            .animation-demo {
+                gap: 20px;
+            }
+            
+            .animation-box {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .spacing-demo {
+                justify-content: space-between;
+                gap: 10px;
+            }
+            
+            .spacing-item {
+                flex: 1;
+            }
+            
+            .device-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .shadow-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .grid-demo {
+                padding: 20px;
+            }
+            
+            .theme-card {
+                padding: 20px;
+            }
+            
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .typography-item {
+                padding: 20px;
+            }
+            
+            .code-block {
+                padding: 20px;
+                font-size: 12px;
+                overflow-x: auto;
+            }
+            
+            .breakpoint-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .responsive-layout {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .header p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section {
+                padding: 30px 15px;
+            }
+            
+            .grid-demo {
+                padding: 15px;
+            }
+            
+            .grid-demo-title {
+                font-size: 16px;
+            }
+            
+            .component-example {
+                padding: 15px;
+            }
+            
+            .theme-card-inner {
+                padding: 15px;
+            }
+            
+            .btn-demo button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .animation-demo {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .animation-box {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .breakpoint-card {
+                padding: 20px;
+            }
+            
+            .responsive-layout {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        /* 1200px以上のデスクトップ対応 */
+        @media (min-width: 1200px) {
+            .breakpoint-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .device-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* 360px以下の小型デバイス対応 */
+        @media (max-width: 360px) {
+            .theme-switcher {
+                flex-direction: column;
+                gap: 3px;
+            }
+            
+            .theme-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            
+            .header {
+                padding: 40px 15px;
+            }
+            
+            .section {
+                padding: 20px 10px;
+            }
+            
+            .responsive-layout::before {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+        }
+    </style>
+</head>
+<body class="theme1">
+    <!-- テーマ切り替えボタン -->
+    <div class="theme-switcher">
+        <button class="theme-btn active" id="theme1-btn" onclick="switchTheme('theme1')">ライトテーマ</button>
+        <button class="theme-btn" id="theme2-btn" onclick="switchTheme('theme2')">ダークテーマ</button>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Sakura Rin デザインガイドライン</h1>
+            <p>インフォグラフィック デザインシステム v1.0</p>
+        </header>
+        
+        <!-- Typography Section -->
+        <section class="section">
+            <h2 class="section-title">タイポグラフィシステム</h2>
+            
+            <div class="typography-grid">
+                <div class="typography-item">
+                    <h3 style="margin-bottom: 20px;">フォントファミリー</h3>
+                    <div class="font-sample" style="font-size: 24px;">Kiwi Maru</div>
+                    <p class="subtitle-text" style="margin-top: 10px;">Google Fontsから提供される丸みのある手書き風フォント</p>
+                </div>
+                
+                <div class="typography-item">
+                    <h3 style="margin-bottom: 20px;">フォントウェイト</h3>
+                    <div class="font-sample font-500" style="font-size: 20px;">500 - 太字（タイトル・強調）</div>
+                    <div class="font-sample font-400" style="font-size: 20px;">400 - 標準（見出し・本文）</div>
+                    <div class="font-sample font-300" style="font-size: 20px;">300 - 細字（補足・注釈）</div>
+                </div>
+                
+                <div class="typography-item">
+                    <h3 style="margin-bottom: 20px;">サイズ階層</h3>
+                    <div class="font-sample font-500" style="font-size: 42px;">42px - セクションタイトル</div>
+                    <div class="font-sample font-400" style="font-size: 24px;">24px - サービスタイトル</div>
+                    <div class="font-sample font-300" style="font-size: 16px;">16px - 本文テキスト</div>
+                </div>
+            </div>
+            
+            <div class="grid-demo">
+                <div class="grid-demo-title">文字装飾ルール</div>
+                <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                    <div>
+                        <p style="font-weight: 500;">文字間隔（太字）</p>
+                        <p style="font-size: 24px; font-weight: 500; letter-spacing: 2px; color: #00BCD4;">letter-spacing: 2px</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 400;">文字間隔（標準）</p>
+                        <p style="font-size: 24px; font-weight: 400; letter-spacing: 1px; color: #00BCD4;">letter-spacing: 1px</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 400;">行間（本文）</p>
+                        <p style="line-height: 1.6;">line-height: 1.6<br>適切な可読性を確保</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Color System -->
+        <section class="section">
+            <h2 class="section-title">カラーシステム</h2>
+            
+            <div class="color-themes">
+                <div class="theme-card">
+                    <h3 class="theme-title">テーマ1：ライトテーマ（ソーダブルー）</h3>
+                    <div class="color-grid">
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #E0F7FA; color: #00838F; border: 2px solid #80DEEA;">背景</div>
+                            <div class="color-label">背景色</div>
+                            <div class="color-code">#E0F7FA</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #00ACC1;">メイン</div>
+                            <div class="color-label">メインカラー</div>
+                            <div class="color-code">#00ACC1</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #00BCD4;">サブ</div>
+                            <div class="color-label">サブカラー</div>
+                            <div class="color-code">#00BCD4</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #80DEEA; color: #00838F; border: 2px solid #4DD0E1;">補助</div>
+                            <div class="color-label">補助カラー</div>
+                            <div class="color-code">#80DEEA</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <h3 class="theme-title">テーマ2：ダークテーマ（コバルトナイト）</h3>
+                    <div class="color-grid">
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #0C1929;">背景</div>
+                            <div class="color-label">背景色</div>
+                            <div class="color-code">#0C1929</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #F0F9FF; color: #0C1929;">メイン</div>
+                            <div class="color-label">メインカラー</div>
+                            <div class="color-code">#F0F9FF</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #60A5FA;">サブ</div>
+                            <div class="color-label">サブカラー</div>
+                            <div class="color-code">#60A5FA</div>
+                        </div>
+                        <div class="color-box">
+                            <div class="color-swatch" style="background: #1E3A5F; color: #F0F9FF; border: 2px solid #2B4C6F;">補助</div>
+                            <div class="color-label">補助カラー</div>
+                            <div class="color-code">#1E3A5F</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Layout Grid System -->
+        <section class="section">
+            <h2 class="section-title">レイアウトグリッドシステム</h2>
+            
+            <div class="grid-demo">
+                <div class="grid-demo-title">情報グリッド - minmax(320px, 1fr)</div>
+                <div class="grid-example grid-responsive" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                    <div class="grid-item">グリッドアイテム1</div>
+                    <div class="grid-item">グリッドアイテム2</div>
+                    <div class="grid-item">グリッドアイテム3</div>
+                </div>
+            </div>
+            
+            <div class="grid-demo">
+                <div class="grid-demo-title">サービスグリッド - minmax(340px, 1fr)</div>
+                <div class="grid-example grid-responsive" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
+                    <div class="grid-item">サービス1</div>
+                    <div class="grid-item">サービス2</div>
+                    <div class="grid-item">サービス3</div>
+                </div>
+            </div>
+            
+            <div class="spacing-demo">
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 60px; height: 20px;"></div>
+                    <div class="spacing-label">20px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 60px; height: 35px;"></div>
+                    <div class="spacing-label">35px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 60px; height: 60px;"></div>
+                    <div class="spacing-label">60px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 60px; height: 80px;"></div>
+                    <div class="spacing-label">80px</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 60px; height: 100px;"></div>
+                    <div class="spacing-label">100px</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Component Styles -->
+        <section class="section">
+            <h2 class="section-title">コンポーネントスタイル</h2>
+            
+            <div class="component-grid">
+                <div class="component-example">
+                    <h3 class="component-title">カードコンポーネント</h3>
+                    <div class="theme-card-inner" style="border-left: 5px solid #00BCD4; padding: 20px; border-radius: 10px;">
+                        <p style="font-weight: 500;">基本カード</p>
+                        <p class="subtitle-text" style="margin-top: 10px;">ボーダー左: 5px solid #00BCD4<br>背景: テーマ依存<br>角丸: 10-20px</p>
+                    </div>
+                </div>
+                
+                <div class="component-example">
+                    <h3 class="component-title">ボタンスタイル</h3>
+                    <div class="btn-demo">
+                        <button class="primary-btn">プライマリ</button>
+                        <button class="secondary-btn">セカンダリ</button>
+                        <button class="outline-btn" style="padding: 10px 28px;">アウトライン</button>
+                    </div>
+                </div>
+                
+                <div class="component-example">
+                    <h3 class="component-title">角丸サイズ</h3>
+                    <div class="radius-demo-container" style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center;">
+                        <div style="width: 80px; height: 80px; background: #00BCD4; border-radius: 10px;"></div>
+                        <div style="width: 80px; height: 80px; background: #00BCD4; border-radius: 15px;"></div>
+                        <div style="width: 80px; height: 80px; background: #00BCD4; border-radius: 20px;"></div>
+                        <div style="width: 80px; height: 80px; background: #00BCD4; border-radius: 25px;"></div>
+                    </div>
+                    <p class="subtitle-text" style="margin-top: 15px;">10px / 15px / 20px / 25px</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Animation & Interaction -->
+        <section class="section">
+            <h2 class="section-title">アニメーション & インタラクション</h2>
+            
+            <div class="animation-demo">
+                <div class="animation-box hover-lift">
+                    <div>
+                        <div style="font-size: 12px; margin-bottom: 5px;">Hover Lift</div>
+                        <div style="font-size: 10px;">translateY(-10px)</div>
+                    </div>
+                </div>
+                <div class="animation-box hover-scale">
+                    <div>
+                        <div style="font-size: 12px; margin-bottom: 5px;">Hover Scale</div>
+                        <div style="font-size: 10px;">scale(1.1)</div>
+                    </div>
+                </div>
+                <div class="animation-box rotating">
+                    <div>
+                        <div style="font-size: 12px; margin-bottom: 5px;">Rotating</div>
+                        <div style="font-size: 10px;">25s infinite</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-block">
+                <span class="code-comment">/* 基本トランジション */</span><br>
+                transition: all 0.3s ease;<br><br>
+                <span class="code-comment">/* ホバーエフェクト */</span><br>
+                transform: translateY(-5px ~ -10px);<br>
+                box-shadow: 0 15px 40px rgba(0,188,212,0.15);
+            </div>
+        </section>
+        
+        <!-- Shadow System -->
+        <section class="section">
+            <h2 class="section-title">シャドウシステム</h2>
+            
+            <div class="shadow-grid">
+                <div class="shadow-box shadow-normal">
+                    <div style="margin-bottom: 10px;">通常シャドウ</div>
+                    <div style="font-size: 12px; color: #999; font-family: monospace;">0 5px 20px<br>rgba(68,85,102,0.05)</div>
+                </div>
+                <div class="shadow-box shadow-hover">
+                    <div style="margin-bottom: 10px;">ホバーシャドウ</div>
+                    <div style="font-size: 12px; color: #999; font-family: monospace;">0 15px 40px<br>rgba(0,188,212,0.15)</div>
+                </div>
+                <div class="shadow-box shadow-emphasis">
+                    <div style="margin-bottom: 10px;">強調シャドウ</div>
+                    <div style="font-size: 12px; color: #999; font-family: monospace;">0 20px 60px<br>rgba(68,85,102,0.3)</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Theme Switching -->
+        <section class="section">
+            <h2 class="section-title">テーマ切り替えシステム</h2>
+            
+            <div class="theme-switch-demo">
+                <p class="subtitle-text" style="margin-bottom: 30px;">ユーザーの好みに応じて2つのテーマを切り替え可能</p>
+                <div class="switch-container">
+                    <button class="switch-btn switch-btn-light" onclick="switchTheme('theme1')">ライトテーマ</button>
+                    <button class="switch-btn switch-btn-dark" onclick="switchTheme('theme2')">ダークテーマ</button>
+                </div>
+            </div>
+            
+            <div class="code-block" style="margin-top: 30px;">
+                <span class="code-comment">// テーマ切り替え実装</span><br>
+                function switchTheme(theme) {<br>
+                &nbsp;&nbsp;document.body.className = theme;<br>
+                &nbsp;&nbsp;localStorage.setItem('selectedTheme', theme);<br>
+                }<br><br>
+                <span class="code-comment">// 初期化時の処理</span><br>
+                window.onload = function() {<br>
+                &nbsp;&nbsp;const savedTheme = localStorage.getItem('selectedTheme') || 'theme1';<br>
+                &nbsp;&nbsp;switchTheme(savedTheme);<br>
+                }
+            </div>
+        </section>
+        
+        <!-- Responsive Design -->
+        <section class="section">
+            <h2 class="section-title">レスポンシブデザイン詳細ガイド</h2>
+            
+            <div class="responsive-demo">
+                <p class="subtitle-text" style="margin-bottom: 30px;">モバイルファーストアプローチによる最適なユーザー体験を提供</p>
+                
+                <!-- ブレークポイント詳細 -->
+                <div class="breakpoint-grid">
+                    <div class="breakpoint-card">
+                        <h3 class="breakpoint-title">📱 モバイル</h3>
+                        <div class="breakpoint-range">320px - 480px</div>
+                        <ul class="breakpoint-changes">
+                            <li>レイアウト: 1カラム固定</li>
+                            <li>フォントサイズ: 36px（H1）</li>
+                            <li>パディング: 10-15px</li>
+                            <li>ボタン: フルワイド</li>
+                            <li>画像: 100%幅</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="breakpoint-card">
+                        <h3 class="breakpoint-title">📲 タブレット</h3>
+                        <div class="breakpoint-range">481px - 768px</div>
+                        <ul class="breakpoint-changes">
+                            <li>レイアウト: 2カラム可能</li>
+                            <li>フォントサイズ: 48px（H1）</li>
+                            <li>パディング: 20-30px</li>
+                            <li>ナビゲーション: ハンバーガー</li>
+                            <li>グリッド: minmax(250px, 1fr)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="breakpoint-card">
+                        <h3 class="breakpoint-title">💻 デスクトップ</h3>
+                        <div class="breakpoint-range">769px以上</div>
+                        <ul class="breakpoint-changes">
+                            <li>レイアウト: フルグリッド</li>
+                            <li>フォントサイズ: 64px（H1）</li>
+                            <li>パディング: 40-60px</li>
+                            <li>ナビゲーション: 横並び</li>
+                            <li>最大幅: 1400px</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- レスポンシブレイアウト例 -->
+                <div class="responsive-example">
+                    <div class="responsive-layout" data-size="Mobile">
+                        <div style="background: rgba(0,188,212,0.2); padding: 15px; margin: 5px; border-radius: 5px;">ヘッダー</div>
+                        <div style="background: rgba(0,188,212,0.2); padding: 20px; margin: 5px; border-radius: 5px;">メインコンテンツ（100%）</div>
+                        <div style="background: rgba(0,188,212,0.2); padding: 15px; margin: 5px; border-radius: 5px;">フッター</div>
+                    </div>
+                </div>
+                
+                <!-- モバイルファーストCSS例 -->
+                <div class="mobile-first-demo">
+                    <h4 style="margin-bottom: 20px;">モバイルファーストCSS設計</h4>
+                    <div class="mobile-first-code">
+<span style="color: #22c55e;">/* ベース（モバイル）スタイル */</span>
+.component {
+  padding: 15px;
+  font-size: 16px;
+  grid-template-columns: 1fr;
+}
+
+<span style="color: #22c55e;">/* タブレット以上 */</span>
+@media (min-width: 768px) {
+  .component {
+    padding: 30px;
+    font-size: 18px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+<span style="color: #22c55e;">/* デスクトップ以上 */</span>
+@media (min-width: 1200px) {
+  .component {
+    padding: 40px;
+    font-size: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+                    </div>
+                </div>
+                
+                <!-- デバイス対応表 -->
+                <div class="device-grid">
+                    <div class="device-box">
+                        <div class="device-icon">📱</div>
+                        <div class="device-label">iPhone SE</div>
+                        <div class="device-spec">375px × 667px</div>
+                    </div>
+                    <div class="device-box">
+                        <div class="device-icon">📱</div>
+                        <div class="device-label">iPhone 14</div>
+                        <div class="device-spec">390px × 844px</div>
+                    </div>
+                    <div class="device-box">
+                        <div class="device-icon">📲</div>
+                        <div class="device-label">iPad</div>
+                        <div class="device-spec">768px × 1024px</div>
+                    </div>
+                    <div class="device-box">
+                        <div class="device-icon">💻</div>
+                        <div class="device-label">MacBook</div>
+                        <div class="device-spec">1280px × 800px</div>
+                    </div>
+                </div>
+                
+                <!-- パフォーマンス最適化 -->
+                <div style="background: rgba(0,188,212,0.1); padding: 30px; border-radius: 15px; margin-top: 40px;">
+                    <h4 style="margin-bottom: 20px;">📊 パフォーマンス最適化</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h5 style="color: #00BCD4; margin-bottom: 10px;">画像最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• WebP形式使用</li>
+                                <li>• レスポンシブ画像</li>
+                                <li>• 遅延読み込み</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #00BCD4; margin-bottom: 10px;">CSS最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• クリティカルCSS</li>
+                                <li>• 不要セレクタ削除</li>
+                                <li>• グリッド優先使用</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #00BCD4; margin-bottom: 10px;">JS最適化</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• 非同期読み込み</li>
+                                <li>• バンドルサイズ削減</li>
+                                <li>• キャッシュ活用</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- アクセシビリティ配慮 -->
+                <div style="background: rgba(96,165,250,0.1); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                    <h4 style="margin-bottom: 20px;">♿ アクセシビリティ配慮</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h5 style="color: #60A5FA; margin-bottom: 10px;">タッチターゲット</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• 最小44px × 44px</li>
+                                <li>• 適切な間隔確保</li>
+                                <li>• ホバー状態明確化</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #60A5FA; margin-bottom: 10px;">テキスト可読性</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• コントラスト比4.5:1</li>
+                                <li>• 最小16pxフォント</li>
+                                <li>• 行間1.5以上</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #60A5FA; margin-bottom: 10px;">ナビゲーション</h5>
+                            <ul style="list-style: none; padding: 0; font-size: 14px;">
+                                <li>• キーボード操作対応</li>
+                                <li>• フォーカス状態表示</li>
+                                <li>• スクリーンリーダー対応</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Best Practices -->
+        <section class="section">
+            <h2 class="section-title">ベストプラクティス</h2>
+            
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">1</div>
+                    <h3 class="practice-title">一貫性の維持</h3>
+                    <p class="practice-text">全体を通じて同じスタイルガイドを適用し、ユーザー体験の一貫性を保つ</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">2</div>
+                    <h3 class="practice-title">アクセシビリティ</h3>
+                    <p class="practice-text">コントラスト比4.5:1以上を維持し、キーボードナビゲーションに対応</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">3</div>
+                    <h3 class="practice-title">パフォーマンス</h3>
+                    <p class="practice-text">CSSアニメーションを使用し、不要なリペイントを避ける</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">4</div>
+                    <h3 class="practice-title">拡張性</h3>
+                    <p class="practice-text">将来的なテーマ追加やコンポーネント拡張を考慮した設計</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">5</div>
+                    <h3 class="practice-title">命名規則</h3>
+                    <p class="practice-text">BEM命名規則を推奨し、テーマ依存スタイルは明確に分離</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">6</div>
+                    <h3 class="practice-title">テスト</h3>
+                    <p class="practice-text">両テーマで全コンポーネントが正しく表示されることを確認</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">7</div>
+                    <h3 class="practice-title">レスポンシブテスト</h3>
+                    <p class="practice-text">複数デバイスでの表示確認とタッチ操作の検証を実施</p>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">8</div>
+                    <h3 class="practice-title">パフォーマンス監視</h3>
+                    <p class="practice-text">Core Web Vitalsを定期的に測定し、最適化を継続</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">株式会社 Sakura Rin</div>
+            <p>インフォグラフィック デザインガイドライン v1.0</p>
+            <p style="margin-top: 10px; font-size: 14px;">© 株式会社Sakura Rin. All Rights Reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function switchTheme(theme) {
+            document.body.className = theme;
+            
+            // ボタンのアクティブ状態を更新
+            document.getElementById('theme1-btn').classList.toggle('active', theme === 'theme1');
+            document.getElementById('theme2-btn').classList.toggle('active', theme === 'theme2');
+            
+            // ローカルストレージに保存
+            localStorage.setItem('selectedTheme', theme);
+        }
+        
+        // ページ読み込み時に保存されたテーマを適用
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'theme1';
+            switchTheme(savedTheme);
+        }
+        
+        // レスポンシブデモ用の画面サイズ表示
+        function updateScreenSize() {
+            const width = window.innerWidth;
+            const deviceType = width < 481 ? 'Mobile' : width < 769 ? 'Tablet' : 'Desktop';
+            
+            // 画面サイズ情報を表示（必要に応じてコメントアウト）
+            // console.log(`Screen: ${width}px (${deviceType})`);
+        }
+        
+        // リサイズイベントリスナー
+        window.addEventListener('resize', updateScreenSize);
+        
+        // 初期化時に実行
+        updateScreenSize();
+    </script>
+</body>
+</html>
