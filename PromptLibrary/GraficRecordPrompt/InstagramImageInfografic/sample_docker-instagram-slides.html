@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker導入手順 - Instagram用スライド</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .controls button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        .controls button:hover {
+            background: #0052a3;
+        }
+        
+        .info-text {
+            text-align: center;
+            color: #636e72;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .slide-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .slide-wrapper {
+            width: 600px;
+            height: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            position: relative;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.1);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        @media (max-width: 640px) {
+            .slide-wrapper {
+                width: 100%;
+                max-width: 400px;
+                height: 400px;
+            }
+            
+            .slide-wrapper svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🐳 Docker導入手順 - Instagram用画像スライド</h1>
+    
+    <div class="controls">
+        <button onclick="downloadAllSlides()">📥 全スライドを保存</button>
+        <button onclick="selectSlideToDownload()">📥 番号を指定して保存</button>
+    </div>
+    <p class="info-text">※ スライドは画像として保存されます（600×600px）</p>
+    
+    <div class="slide-container">
+        <!-- スライド1: タイトル -->
+        <div class="slide-wrapper">
+            <div class="slide-number">1/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide1-svg">
+                <defs>
+                    <linearGradient id="bg-gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0066cc"/>
+                        <stop offset="100%" style="stop-color:#003d7a"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient1)"/>
+                
+                <!-- Docker ロゴ風の要素 -->
+                <text x="300" y="220" text-anchor="middle" fill="white" font-size="100">🐳</text>
+                
+                <!-- メインタイトル -->
+                <text x="300" y="320" text-anchor="middle" fill="white" font-size="48" font-weight="bold">Docker</text>
+                <text x="300" y="370" text-anchor="middle" fill="white" font-size="28">導入ガイド</text>
+                
+                <!-- サブタイトル -->
+                <text x="300" y="440" text-anchor="middle" fill="white" font-size="18" opacity="0.9">初心者でも簡単に始められる</text>
+                <text x="300" y="470" text-anchor="middle" fill="white" font-size="18" opacity="0.9">コンテナ技術入門</text>
+            </svg>
+        </div>
+        
+        <!-- スライド2: Dockerとは -->
+        <div class="slide-wrapper">
+            <div class="slide-number">2/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide2-svg">
+                <defs>
+                    <linearGradient id="bg-gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0052a3"/>
+                        <stop offset="100%" style="stop-color:#004494"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient2)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="32" font-weight="bold">Dockerとは？</text>
+                
+                <!-- 説明カード -->
+                <rect x="50" y="120" width="500" height="420" rx="15" fill="white" opacity="0.95"/>
+                
+                <!-- アイコンと説明 -->
+                <text x="300" y="200" text-anchor="middle" font-size="60">📦</text>
+                
+                <text x="300" y="260" text-anchor="middle" fill="#333" font-size="20" font-weight="bold">コンテナ型仮想化技術</text>
+                
+                <!-- 特徴リスト -->
+                <g transform="translate(100, 300)">
+                    <text y="0" fill="#555" font-size="18">✅ アプリケーションを隔離環境で実行</text>
+                    <text y="40" fill="#555" font-size="18">✅ 環境の差異を吸収</text>
+                    <text y="80" fill="#555" font-size="18">✅ 軽量で高速な起動</text>
+                    <text y="120" fill="#555" font-size="18">✅ どこでも同じように動作</text>
+                    <text y="160" fill="#555" font-size="18">✅ 開発環境の共有が簡単</text>
+                </g>
+            </svg>
+        </div>
+        
+        <!-- スライド3: メリット -->
+        <div class="slide-wrapper">
+            <div class="slide-number">3/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide3-svg">
+                <defs>
+                    <linearGradient id="bg-gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2e86ab"/>
+                        <stop offset="100%" style="stop-color:#1e5f8e"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient3)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="32" font-weight="bold">Dockerのメリット</text>
+                
+                <!-- メリットカード -->
+                <g transform="translate(60, 130)">
+                    <!-- カード1 -->
+                    <rect x="0" y="0" width="220" height="160" rx="10" fill="white" opacity="0.95"/>
+                    <text x="110" y="50" text-anchor="middle" font-size="36">🚀</text>
+                    <text x="110" y="90" text-anchor="middle" fill="#333" font-size="18" font-weight="bold">高速起動</text>
+                    <text x="110" y="115" text-anchor="middle" fill="#666" font-size="14">数秒で</text>
+                    <text x="110" y="135" text-anchor="middle" fill="#666" font-size="14">環境構築完了</text>
+                    
+                    <!-- カード2 -->
+                    <rect x="260" y="0" width="220" height="160" rx="10" fill="white" opacity="0.95"/>
+                    <text x="370" y="50" text-anchor="middle" font-size="36">♻️</text>
+                    <text x="370" y="90" text-anchor="middle" fill="#333" font-size="18" font-weight="bold">再現性</text>
+                    <text x="370" y="115" text-anchor="middle" fill="#666" font-size="14">どこでも同じ</text>
+                    <text x="370" y="135" text-anchor="middle" fill="#666" font-size="14">動作を保証</text>
+                </g>
+                
+                <g transform="translate(60, 320)">
+                    <!-- カード3 -->
+                    <rect x="0" y="0" width="220" height="160" rx="10" fill="white" opacity="0.95"/>
+                    <text x="110" y="50" text-anchor="middle" font-size="36">💾</text>
+                    <text x="110" y="90" text-anchor="middle" fill="#333" font-size="18" font-weight="bold">省リソース</text>
+                    <text x="110" y="115" text-anchor="middle" fill="#666" font-size="14">VMより軽量で</text>
+                    <text x="110" y="135" text-anchor="middle" fill="#666" font-size="14">効率的</text>
+                    
+                    <!-- カード4 -->
+                    <rect x="260" y="0" width="220" height="160" rx="10" fill="white" opacity="0.95"/>
+                    <text x="370" y="50" text-anchor="middle" font-size="36">👥</text>
+                    <text x="370" y="90" text-anchor="middle" fill="#333" font-size="18" font-weight="bold">共有簡単</text>
+                    <text x="370" y="115" text-anchor="middle" fill="#666" font-size="14">イメージで</text>
+                    <text x="370" y="135" text-anchor="middle" fill="#666" font-size="14">環境を配布</text>
+                </g>
+            </svg>
+        </div>
+        
+        <!-- スライド4: インストール（Windows/Mac） -->
+        <div class="slide-wrapper">
+            <div class="slide-number">4/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide4-svg">
+                <defs>
+                    <linearGradient id="bg-gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3d5a80"/>
+                        <stop offset="100%" style="stop-color:#293241"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient4)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="28" font-weight="bold">インストール方法</text>
+                <text x="300" y="110" text-anchor="middle" fill="white" font-size="20">Windows / Mac</text>
+                
+                <!-- インストール手順 -->
+                <rect x="50" y="140" width="500" height="400" rx="15" fill="white" opacity="0.95"/>
+                
+                <g transform="translate(80, 180)">
+                    <!-- ステップ1 -->
+                    <circle cx="25" cy="25" r="20" fill="#0066cc"/>
+                    <text x="25" y="32" text-anchor="middle" fill="white" font-size="18" font-weight="bold">1</text>
+                    <text x="70" y="20" fill="#333" font-size="18" font-weight="bold">Docker Desktop をダウンロード</text>
+                    <text x="70" y="45" fill="#666" font-size="16">docker.com から入手</text>
+                    
+                    <!-- ステップ2 -->
+                    <circle cx="25" cy="105" r="20" fill="#0066cc"/>
+                    <text x="25" y="112" text-anchor="middle" fill="white" font-size="18" font-weight="bold">2</text>
+                    <text x="70" y="100" fill="#333" font-size="18" font-weight="bold">インストーラーを実行</text>
+                    <text x="70" y="125" fill="#666" font-size="16">ダブルクリックで起動</text>
+                    
+                    <!-- ステップ3 -->
+                    <circle cx="25" cy="185" r="20" fill="#0066cc"/>
+                    <text x="25" y="192" text-anchor="middle" fill="white" font-size="18" font-weight="bold">3</text>
+                    <text x="70" y="180" fill="#333" font-size="18" font-weight="bold">設定を確認</text>
+                    <text x="70" y="205" fill="#666" font-size="16">デフォルト設定でOK</text>
+                    
+                    <!-- ステップ4 -->
+                    <circle cx="25" cy="265" r="20" fill="#0066cc"/>
+                    <text x="25" y="272" text-anchor="middle" fill="white" font-size="18" font-weight="bold">4</text>
+                    <text x="70" y="260" fill="#333" font-size="18" font-weight="bold">Docker Desktop を起動</text>
+                    <text x="70" y="285" fill="#666" font-size="16">タスクバーにアイコンが表示</text>
+                </g>
+                
+                <!-- 所要時間 -->
+                <rect x="200" y="480" width="200" height="35" rx="17" fill="#4CAF50"/>
+                <text x="300" y="502" text-anchor="middle" fill="white" font-size="16">約10分で完了！</text>
+            </svg>
+        </div>
+        
+        <!-- スライド5: 基本コマンド -->
+        <div class="slide-wrapper">
+            <div class="slide-number">5/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide5-svg">
+                <defs>
+                    <linearGradient id="bg-gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ee6c4d"/>
+                        <stop offset="100%" style="stop-color:#c9524b"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient5)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="32" font-weight="bold">基本コマンド</text>
+                
+                <!-- コマンドリスト -->
+                <g transform="translate(50, 120)">
+                    <!-- コマンド1 -->
+                    <rect x="0" y="0" width="500" height="80" rx="10" fill="white" opacity="0.95"/>
+                    <rect x="15" y="15" width="470" height="30" rx="5" fill="#f5f5f5"/>
+                    <text x="25" y="35" fill="#333" font-family="monospace" font-size="16">docker run hello-world</text>
+                    <text x="25" y="65" fill="#666" font-size="14">テスト用のコンテナを実行</text>
+                    
+                    <!-- コマンド2 -->
+                    <rect x="0" y="95" width="500" height="80" rx="10" fill="white" opacity="0.95"/>
+                    <rect x="15" y="110" width="470" height="30" rx="5" fill="#f5f5f5"/>
+                    <text x="25" y="130" fill="#333" font-family="monospace" font-size="16">docker ps</text>
+                    <text x="25" y="160" fill="#666" font-size="14">実行中のコンテナ一覧を表示</text>
+                    
+                    <!-- コマンド3 -->
+                    <rect x="0" y="190" width="500" height="80" rx="10" fill="white" opacity="0.95"/>
+                    <rect x="15" y="205" width="470" height="30" rx="5" fill="#f5f5f5"/>
+                    <text x="25" y="225" fill="#333" font-family="monospace" font-size="16">docker images</text>
+                    <text x="25" y="255" fill="#666" font-size="14">ダウンロード済みイメージ一覧</text>
+                    
+                    <!-- コマンド4 -->
+                    <rect x="0" y="285" width="500" height="80" rx="10" fill="white" opacity="0.95"/>
+                    <rect x="15" y="300" width="470" height="30" rx="5" fill="#f5f5f5"/>
+                    <text x="25" y="320" fill="#333" font-family="monospace" font-size="16">docker pull [イメージ名]</text>
+                    <text x="25" y="350" fill="#666" font-size="14">イメージをダウンロード</text>
+                </g>
+            </svg>
+        </div>
+        
+        <!-- スライド6: Hello World実行 -->
+        <div class="slide-wrapper">
+            <div class="slide-number">6/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide6-svg">
+                <defs>
+                    <linearGradient id="bg-gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#98c1d9"/>
+                        <stop offset="100%" style="stop-color:#6096ba"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient6)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="32" font-weight="bold">はじめての実行</text>
+                
+                <!-- ターミナルウィンドウ -->
+                <rect x="50" y="120" width="500" height="350" rx="10" fill="#1e1e1e"/>
+                <rect x="50" y="120" width="500" height="40" rx="10" fill="#333"/>
+                <circle cx="80" cy="140" r="8" fill="#ff5f56"/>
+                <circle cx="105" cy="140" r="8" fill="#ffbd2e"/>
+                <circle cx="130" cy="140" r="8" fill="#27c93f"/>
+                <text x="300" y="145" text-anchor="middle" fill="white" font-size="14">Terminal</text>
+                
+                <!-- コマンド実行 -->
+                <text x="70" y="200" fill="#4CAF50" font-family="monospace" font-size="16">$ docker run hello-world</text>
+                
+                <!-- 出力結果 -->
+                <text x="70" y="240" fill="#ccc" font-family="monospace" font-size="14">Unable to find image 'hello-world:latest'</text>
+                <text x="70" y="260" fill="#ccc" font-family="monospace" font-size="14">latest: Pulling from library/hello-world</text>
+                <text x="70" y="280" fill="#ccc" font-family="monospace" font-size="14">c1ec31eb5944: Pull complete</text>
+                <text x="70" y="300" fill="#ccc" font-family="monospace" font-size="14">Digest: sha256:d000bc569937...</text>
+                <text x="70" y="320" fill="#ccc" font-family="monospace" font-size="14">Status: Downloaded newer image...</text>
+                
+                <text x="70" y="360" fill="#4CAF50" font-family="monospace" font-size="16" font-weight="bold">Hello from Docker!</text>
+                <text x="70" y="380" fill="#ccc" font-family="monospace" font-size="14">This message shows that your</text>
+                <text x="70" y="400" fill="#ccc" font-family="monospace" font-size="14">installation appears to be working</text>
+                <text x="70" y="420" fill="#ccc" font-family="monospace" font-size="14">correctly.</text>
+                
+                <!-- 成功メッセージ -->
+                <rect x="150" y="500" width="300" height="50" rx="25" fill="#4CAF50"/>
+                <text x="300" y="530" text-anchor="middle" fill="white" font-size="20" font-weight="bold">✅ 成功！</text>
+            </svg>
+        </div>
+        
+        <!-- スライド7: 次のステップ -->
+        <div class="slide-wrapper">
+            <div class="slide-number">7/7</div>
+            <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" id="slide7-svg">
+                <defs>
+                    <linearGradient id="bg-gradient7" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0066cc"/>
+                        <stop offset="100%" style="stop-color:#003d7a"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect width="600" height="600" fill="url(#bg-gradient7)"/>
+                
+                <!-- タイトル -->
+                <text x="300" y="80" text-anchor="middle" fill="white" font-size="32" font-weight="bold">次のステップ</text>
+                
+                <!-- アクションカード -->
+                <rect x="60" y="130" width="480" height="380" rx="20" fill="white" opacity="0.95"/>
+                
+                <!-- 推奨アクション -->
+                <text x="300" y="180" text-anchor="middle" fill="#333" font-size="24" font-weight="bold">これからの学習</text>
+                
+                <g transform="translate(100, 220)">
+                    <text y="0" fill="#555" font-size="18">📚 Dockerfile の書き方を学ぶ</text>
+                    <text y="40" fill="#555" font-size="18">🔧 docker-compose を使ってみる</text>
+                    <text y="80" fill="#555" font-size="18">🌐 Docker Hub を活用する</text>
+                    <text y="120" fill="#555" font-size="18">💡 実際のプロジェクトで使う</text>
+                </g>
+                
+                <!-- リソース -->
+                <rect x="80" y="390" width="440" height="80" rx="10" fill="#f5f5f5"/>
+                <text x="300" y="420" text-anchor="middle" fill="#333" font-size="16" font-weight="bold">おすすめリソース</text>
+                <text x="300" y="450" text-anchor="middle" fill="#666" font-size="14">docs.docker.com</text>
+                
+                <!-- フッター -->
+                <text x="300" y="550" text-anchor="middle" fill="white" font-size="16">Docker で開発をもっと楽しく！🐳</text>
+            </svg>
+        </div>
+    </div>
+    
+    <script>
+        // スライド総数を動的に取得
+        function getSlideCount() {
+            return document.querySelectorAll('[id^="slide"][id$="-svg"]').length;
+        }
+        
+        // SVGをPNGに変換してダウンロード
+        function downloadSlide(slideNumber) {
+            const svg = document.getElementById(`slide${slideNumber}-svg`);
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            canvas.width = 600;
+            canvas.height = 600;
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `docker-slide-${slideNumber}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            };
+            
+            img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+        }
+        
+        // 全スライドダウンロード
+        function downloadAllSlides() {
+            const slideCount = getSlideCount();
+            for (let i = 1; i <= slideCount; i++) {
+                setTimeout(() => downloadSlide(i), (i - 1) * 500);
+            }
+            
+            setTimeout(() => {
+                alert(`${slideCount}枚のスライドのダウンロードを開始しました。\nブラウザのダウンロードフォルダを確認してください。`);
+            }, slideCount * 500);
+        }
+        
+        // 番号指定ダウンロード
+        function selectSlideToDownload() {
+            const slideCount = getSlideCount();
+            const slideNum = prompt(`保存したいスライドの番号を入力してください（1〜${slideCount}）：`);
+            
+            if (slideNum === null) return;
+            
+            const num = parseInt(slideNum);
+            if (isNaN(num) || num < 1 || num > slideCount) {
+                alert(`1から${slideCount}の番号を入力してください。`);
+                return;
+            }
+            
+            downloadSlide(num);
+        }
+    </script>
+</body>
+</html>
