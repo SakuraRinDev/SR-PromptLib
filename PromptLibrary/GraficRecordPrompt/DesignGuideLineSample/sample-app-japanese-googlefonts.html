@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Fonts 日本語フォント完全版 - Sakura Rin Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Kosugi&family=Kosugi+Maru&family=Sawarabi+Gothic&family=Sawarabi+Mincho&family=Shippori+Mincho:wght@400;500;600;700;800&family=Shippori+Mincho+B1:wght@400;500;600;700;800&family=Zen+Maru+Gothic:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Zen+Antique&family=Hina+Mincho&family=Yusei+Magic&family=Yuji+Syuku&family=Yuji+Boku&family=Yuji+Mai&family=Klee+One:wght@400;600&family=Dela+Gothic+One&family=Potta+One&family=Rampart+One&family=Reggae+One&family=RocknRoll+One&family=Stick&family=Otomanopee+One&family=Hachi+Maru+Pop&family=Mochiy+Pop+P+One&family=Kaisei+Decol:wght@400;700&family=Kaisei+Tokumin:wght@400;500;700;800&family=Kaisei+HarunoUmi:wght@400;500;700&family=Kaisei+Opti:wght@400;500;700&family=DotGothic16&family=Palette+Mosaic&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* テーマ1: ライトテーマ（ソーダブルー） */
+            --bg-color-light: #E0F7FA;
+            --main-color-light: #00ACC1;
+            --sub-color-light: #00BCD4;
+            --support-color-light: #80DEEA;
+            --text-color-light: #006064;
+            --card-bg-light: #FFFFFF;
+            
+            /* テーマ2: ダークテーマ（コバルトナイト） */
+            --bg-color-dark: #0C1929;
+            --main-color-dark: #F0F9FF;
+            --sub-color-dark: #60A5FA;
+            --support-color-dark: #1E3A5F;
+            --text-color-dark: #F0F9FF;
+            --card-bg-dark: #1E3A5F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kiwi Maru', serif;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            padding-top: 40px;
+        }
+
+        /* テーマ1: ライトテーマ */
+        .theme1 {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+
+        .theme1 .container {
+            background-color: var(--card-bg-light);
+            box-shadow: 0 20px 60px rgba(68,85,102,0.3);
+        }
+
+        .theme1 .header {
+            background: linear-gradient(135deg, var(--main-color-light), var(--sub-color-light));
+            color: white;
+        }
+
+        .theme1 .font-card {
+            background-color: var(--card-bg-light);
+            box-shadow: 0 5px 20px rgba(68,85,102,0.05);
+        }
+
+        .theme1 .font-card:hover {
+            box-shadow: 0 15px 40px rgba(0,188,212,0.15);
+        }
+
+        .theme1 .stats-section {
+            background: linear-gradient(135deg, var(--main-color-light), var(--sub-color-light));
+            color: white;
+        }
+
+        .theme1 .theme-toggle {
+            background-color: var(--main-color-light);
+            color: white;
+        }
+
+        /* テーマ2: ダークテーマ */
+        .theme2 {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        .theme2 .container {
+            background-color: var(--support-color-dark);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .theme2 .header {
+            background: linear-gradient(135deg, var(--support-color-dark), var(--sub-color-dark));
+            color: var(--main-color-dark);
+        }
+
+        .theme2 .font-card {
+            background-color: var(--card-bg-dark);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .theme2 .font-card:hover {
+            box-shadow: 0 15px 40px rgba(96,165,250,0.2);
+        }
+
+        .theme2 .stats-section {
+            background: linear-gradient(135deg, var(--support-color-dark), var(--sub-color-dark));
+            color: var(--main-color-dark);
+        }
+
+        .theme2 .theme-toggle {
+            background-color: var(--sub-color-dark);
+            color: var(--main-color-dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-size: 64px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .main-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .theme-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .theme-toggle {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Kiwi Maru', serif;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .fonts-section {
+            padding: 80px 40px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 25px;
+            font-size: 18px;
+            font-family: 'Kiwi Maru', serif;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(68,85,102,0.1);
+        }
+
+        .theme1 .search-input {
+            background-color: var(--card-bg-light);
+            color: var(--text-color-light);
+        }
+
+        .theme1 .search-input:focus {
+            border-color: var(--main-color-light);
+            box-shadow: 0 8px 25px rgba(0,172,193,0.2);
+        }
+
+        .theme2 .search-input {
+            background-color: var(--card-bg-dark);
+            color: var(--text-color-dark);
+        }
+
+        .theme2 .search-input:focus {
+            border-color: var(--sub-color-dark);
+            box-shadow: 0 8px 25px rgba(96,165,250,0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+
+        .clear-search:hover {
+            opacity: 1;
+        }
+
+        .search-results-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 18px;
+            opacity: 0.6;
+        }
+
+        .font-card.hidden {
+            display: none;
+        }
+
+        .category-section.hidden {
+            display: none;
+        }
+
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            border-radius: 2px;
+        }
+
+        .fonts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .font-card {
+            padding: 35px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .font-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .serif-badge {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #ef5350;
+        }
+
+        .sans-serif-badge {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border-left: 4px solid #66bb6a;
+        }
+
+        .display-badge {
+            background: #fff3e0;
+            color: #ef6c00;
+            border-left: 4px solid #ff9800;
+        }
+
+        .handwriting-badge {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border-left: 4px solid #ba68c8;
+        }
+
+        .unique-badge {
+            background: #e1f5fe;
+            color: #0277bd;
+            border-left: 4px solid #29b6f6;
+        }
+
+        .font-name {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .font-name::before {
+            content: '✨';
+            font-size: 24px;
+        }
+
+        .font-description {
+            font-size: 14px;
+            font-weight: 300;
+            margin-bottom: 25px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .sample-text {
+            font-size: 28px;
+            line-height: 1.4;
+            margin-bottom: 18px;
+            word-break: break-all;
+        }
+
+        .sample-english {
+            font-size: 22px;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .sample-numbers {
+            font-size: 18px;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        /* フォント固有のスタイル */
+        .noto-sans-jp { font-family: 'Noto Sans JP', sans-serif; }
+        .noto-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .m-plus-1p { font-family: 'M PLUS 1p', sans-serif; }
+        .m-plus-rounded { font-family: 'M PLUS Rounded 1c', sans-serif; }
+        .kosugi { font-family: 'Kosugi', sans-serif; }
+        .kosugi-maru { font-family: 'Kosugi Maru', sans-serif; }
+        .sawarabi-gothic { font-family: 'Sawarabi Gothic', sans-serif; }
+        .sawarabi-mincho { font-family: 'Sawarabi Mincho', serif; }
+        .shippori-mincho { font-family: 'Shippori Mincho', serif; }
+        .shippori-mincho-b1 { font-family: 'Shippori Mincho B1', serif; }
+        .zen-maru-gothic { font-family: 'Zen Maru Gothic', sans-serif; }
+        .zen-kaku-gothic { font-family: 'Zen Kaku Gothic New', sans-serif; }
+        .zen-antique { font-family: 'Zen Antique', serif; }
+        .hina-mincho { font-family: 'Hina Mincho', serif; }
+        .yusei-magic { font-family: 'Yusei Magic', sans-serif; }
+        .yuji-syuku { font-family: 'Yuji Syuku', serif; }
+        .yuji-boku { font-family: 'Yuji Boku', serif; }
+        .yuji-mai { font-family: 'Yuji Mai', serif; }
+        .klee-one { font-family: 'Klee One', cursive; }
+        .dela-gothic-one { font-family: 'Dela Gothic One', cursive; }
+        .potta-one { font-family: 'Potta One', cursive; }
+        .rampart-one { font-family: 'Rampart One', cursive; }
+        .reggae-one { font-family: 'Reggae One', cursive; }
+        .rocknroll-one { font-family: 'RocknRoll One', sans-serif; }
+        .stick { font-family: 'Stick', sans-serif; }
+        .otomanopee-one { font-family: 'Otomanopee One', sans-serif; }
+        .hachi-maru-pop { font-family: 'Hachi Maru Pop', cursive; }
+        .mochiy-pop { font-family: 'Mochiy Pop P One', sans-serif; }
+        .kaisei-decol { font-family: 'Kaisei Decol', serif; }
+        .kaisei-tokumin { font-family: 'Kaisei Tokumin', serif; }
+        .kaisei-harunoumi { font-family: 'Kaisei HarunoUmi', serif; }
+        .kaisei-opti { font-family: 'Kaisei Opti', serif; }
+        .dotgothic16 { font-family: 'DotGothic16', monospace; }
+        .palette-mosaic { font-family: 'Palette Mosaic', monospace; }
+        .kiwi-maru { font-family: 'Kiwi Maru', serif; }
+
+        .stats-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .theme1 .footer {
+            background-color: var(--support-color-light);
+            color: var(--text-color-light);
+            border-top-color: rgba(0,96,100,0.2);
+        }
+
+        .theme2 .footer {
+            background-color: var(--support-color-dark);
+            color: var(--text-color-dark);
+            border-top-color: rgba(240,249,255,0.1);
+        }
+
+        .stats-title {
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 20px;
+            }
+
+            .container {
+                margin: 15px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .main-subtitle {
+                font-size: 18px;
+            }
+
+            .fonts-section {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .category-title {
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+
+            .fonts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .font-card {
+                padding: 25px;
+            }
+
+            .sample-text {
+                font-size: 22px;
+            }
+
+            .sample-english {
+                font-size: 18px;
+            }
+
+            .stats-section {
+                padding: 30px 20px;
+            }
+
+            .stats-title {
+                font-size: 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 20px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            .theme-controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body class="theme1">
+    <div class="container">
+        <header class="header">
+            <div class="theme-controls">
+                <button class="theme-toggle" onclick="switchTheme('theme1')">ライト</button>
+                <button class="theme-toggle" onclick="switchTheme('theme2')">ダーク</button>
+            </div>
+            <div class="header-content">
+                <h1 class="main-title">Google Fonts 日本語完全版</h1>
+                <p class="main-subtitle">64種類すべての日本語フォントサンプル集</p>
+            </div>
+        </header>
+
+        <section class="fonts-section">
+            <h2 class="section-title">カテゴリ別フォントコレクション</h2>
+            
+            <!-- 検索機能 -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="fontSearch" placeholder="フォント名、説明、カテゴリで検索...">
+                <button class="clear-search" id="clearSearch">✕</button>
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="search-results-info" id="searchResults" style="display: none;"></div>
+            <div class="no-results" id="noResults" style="display: none;">
+                検索結果が見つかりませんでした。<br>
+                別のキーワードで検索してみてください。
+            </div>
+            
+            <!-- 明朝体・セリフ系 -->
+            <div class="category-section">
+                <h3 class="category-title">明朝体・セリフ系（読みやすく上品）</h3>
+                <div class="fonts-grid">
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Noto Serif JP</div>
+                        <div class="font-description">GoogleとAdobeが共同開発した高品質明朝体。デジタル庁でも採用される信頼性。</div>
+                        <div class="sample-text noto-serif-jp">こんにちは世界</div>
+                        <div class="sample-english noto-serif-jp">Hello World</div>
+                        <div class="sample-numbers noto-serif-jp">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Shippori Mincho</div>
+                        <div class="font-description">東京築地活版の名作「五号系活字」をベースにした上品で美しい明朝体。</div>
+                        <div class="sample-text shippori-mincho">こんにちは世界</div>
+                        <div class="sample-english shippori-mincho">Hello World</div>
+                        <div class="sample-numbers shippori-mincho">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Shippori Mincho B1</div>
+                        <div class="font-description">しっぽり明朝の改良版。払いの先端に丸みを加えより読みやすく。</div>
+                        <div class="sample-text shippori-mincho-b1">こんにちは世界</div>
+                        <div class="sample-english shippori-mincho-b1">Hello World</div>
+                        <div class="sample-numbers shippori-mincho-b1">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Hina Mincho</div>
+                        <div class="font-description">雛人形をイメージした古風でかわいらしい明朝体。丸みを帯びたやわらかい印象。</div>
+                        <div class="sample-text hina-mincho">こんにちは世界</div>
+                        <div class="sample-english hina-mincho">Hello World</div>
+                        <div class="sample-numbers hina-mincho">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Sawarabi Mincho</div>
+                        <div class="font-description">やわらかく親しみやすい明朝体。読みやすさを重視したデザイン。</div>
+                        <div class="sample-text sawarabi-mincho">こんにちは世界</div>
+                        <div class="sample-english sawarabi-mincho">Hello World</div>
+                        <div class="sample-numbers sawarabi-mincho">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Zen Antique</div>
+                        <div class="font-description">やわらかみのある明朝体。読みやすく品のある書体が特徴。</div>
+                        <div class="sample-text zen-antique">こんにちは世界</div>
+                        <div class="sample-english zen-antique">Hello World</div>
+                        <div class="sample-numbers zen-antique">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Yuji Syuku</div>
+                        <div class="font-description">書家・片岡祐二氏の手書きをデジタル化。伝統と品格を持つ書体。</div>
+                        <div class="sample-text yuji-syuku">こんにちは世界</div>
+                        <div class="sample-english yuji-syuku">Hello World</div>
+                        <div class="sample-numbers yuji-syuku">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Yuji Boku</div>
+                        <div class="font-description">祐二シリーズ。親しみやすさも併せ持つ手書き風明朝体。</div>
+                        <div class="sample-text yuji-boku">こんにちは世界</div>
+                        <div class="sample-english yuji-boku">Hello World</div>
+                        <div class="sample-numbers yuji-boku">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Yuji Mai</div>
+                        <div class="font-description">祐二シリーズ。広く受け入れられる美しい手書き風デザイン。</div>
+                        <div class="sample-text yuji-mai">こんにちは世界</div>
+                        <div class="sample-english yuji-mai">Hello World</div>
+                        <div class="sample-numbers yuji-mai">0123456789</div>
+                    </div>
+
+                    <!-- 解星シリーズ -->
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Kaisei Tokumin</div>
+                        <div class="font-description">見出しに最適な力強い書体。強い訴求力の中にデリカシーを失わない設計。</div>
+                        <div class="sample-text kaisei-tokumin">こんにちは世界</div>
+                        <div class="sample-english kaisei-tokumin">Hello World</div>
+                        <div class="sample-numbers kaisei-tokumin">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Kaisei HarunoUmi</div>
+                        <div class="font-description">ゆったりとしたうねりを取り入れた、生活感を身近にしてくれるスタイル。</div>
+                        <div class="sample-text kaisei-harunoumi">こんにちは世界</div>
+                        <div class="sample-english kaisei-harunoumi">Hello World</div>
+                        <div class="sample-numbers kaisei-harunoumi">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Kaisei Opti</div>
+                        <div class="font-description">モダンで明るく爽やかな雰囲気。若い世代に好まれる書体。</div>
+                        <div class="sample-text kaisei-opti">こんにちは世界</div>
+                        <div class="sample-english kaisei-opti">Hello World</div>
+                        <div class="sample-numbers kaisei-opti">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge serif-badge">Serif</div>
+                        <div class="font-name">Kaisei Decol</div>
+                        <div class="font-description">可愛らしさや楽しさ、和みの表情などを表現したいときにオススメ。</div>
+                        <div class="sample-text kaisei-decol">こんにちは世界</div>
+                        <div class="sample-english kaisei-decol">Hello World</div>
+                        <div class="sample-numbers kaisei-decol">0123456789</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ゴシック体・サンセリフ系 -->
+            <div class="category-section">
+                <h3 class="category-title">ゴシック体・サンセリフ系（現代的で読みやすい）</h3>
+                <div class="fonts-grid">
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Noto Sans JP</div>
+                        <div class="font-description">最も人気の高いGoogle Fonts日本語フォント。ビジネスサイトに最適。</div>
+                        <div class="sample-text noto-sans-jp">こんにちは世界</div>
+                        <div class="sample-english noto-sans-jp">Hello World</div>
+                        <div class="sample-numbers noto-sans-jp">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">M PLUS 1p</div>
+                        <div class="font-description">シンプルで洗練されたデザイン。ポートフォリオサイトにおすすめ。</div>
+                        <div class="sample-text m-plus-1p">こんにちは世界</div>
+                        <div class="sample-english m-plus-1p">Hello World</div>
+                        <div class="sample-numbers m-plus-1p">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">M PLUS Rounded 1c</div>
+                        <div class="font-description">丸みを帯びた可愛いフォント。子供向けサイトやカジュアルなデザインに。</div>
+                        <div class="sample-text m-plus-rounded">こんにちは世界</div>
+                        <div class="sample-english m-plus-rounded">Hello World</div>
+                        <div class="sample-numbers m-plus-rounded">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Zen Maru Gothic</div>
+                        <div class="font-description">上品な丸ゴシック。落ち着いた印象で幅広い用途に使用可能。</div>
+                        <div class="sample-text zen-maru-gothic">こんにちは世界</div>
+                        <div class="sample-english zen-maru-gothic">Hello World</div>
+                        <div class="sample-numbers zen-maru-gothic">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Zen Kaku Gothic New</div>
+                        <div class="font-description">バランスの良いゴシック体。モダンで読みやすいデザイン。</div>
+                        <div class="sample-text zen-kaku-gothic">こんにちは世界</div>
+                        <div class="sample-english zen-kaku-gothic">Hello World</div>
+                        <div class="sample-numbers zen-kaku-gothic">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Sawarabi Gothic</div>
+                        <div class="font-description">やさしい印象のゴシック体。長文でも読みやすい設計。</div>
+                        <div class="sample-text sawarabi-gothic">こんにちは世界</div>
+                        <div class="sample-english sawarabi-gothic">Hello World</div>
+                        <div class="sample-numbers sawarabi-gothic">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Kosugi</div>
+                        <div class="font-description">標準的なゴシック体。シンプルで使いやすいデザイン。</div>
+                        <div class="sample-text kosugi">こんにちは世界</div>
+                        <div class="sample-english kosugi">Hello World</div>
+                        <div class="sample-numbers kosugi">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge sans-serif-badge">Sans</div>
+                        <div class="font-name">Kosugi Maru</div>
+                        <div class="font-description">やわらかく親しみやすい丸ゴシック体。カジュアルなサイトに最適。</div>
+                        <div class="sample-text kosugi-maru">こんにちは世界</div>
+                        <div class="sample-english kosugi-maru">Hello World</div>
+                        <div class="sample-numbers kosugi-maru">0123456789</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ディスプレイ・装飾系 -->
+            <div class="category-section">
+                <h3 class="category-title">ディスプレイ・装飾系（見出し・タイトル用）</h3>
+                <div class="fonts-grid">
+                    <div class="font-card">
+                        <div class="category-badge display-badge">Display</div>
+                        <div class="font-name">Dela Gothic One</div>
+                        <div class="font-description">極太でインパクトのあるフォント。ロゴや見出しに最適。</div>
+                        <div class="sample-text dela-gothic-one">こんにちは世界</div>
+                        <div class="sample-english dela-gothic-one">Hello World</div>
+                        <div class="sample-numbers dela-gothic-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge display-badge">Display</div>
+                        <div class="font-name">Rampart One</div>
+                        <div class="font-description">立体的な影付きフォント。力強さや安定感を表現。</div>
+                        <div class="sample-text rampart-one">こんにちは世界</div>
+                        <div class="sample-english rampart-one">Hello World</div>
+                        <div class="sample-numbers rampart-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge display-badge">Display</div>
+                        <div class="font-name">Reggae One</div>
+                        <div class="font-description">ダイナミックで躍動感のあるフォント。エネルギッシュな印象。</div>
+                        <div class="sample-text reggae-one">こんにちは世界</div>
+                        <div class="sample-english reggae-one">Hello World</div>
+                        <div class="sample-numbers reggae-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge display-badge">Display</div>
+                        <div class="font-name">RocknRoll One</div>
+                        <div class="font-description">軽快で躍動感のあるポップスタイル。生き生きとした印象。</div>
+                        <div class="sample-text rocknroll-one">こんにちは世界</div>
+                        <div class="sample-english rocknroll-one">Hello World</div>
+                        <div class="sample-numbers rocknroll-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge display-badge">Display</div>
+                        <div class="font-name">Stick</div>
+                        <div class="font-description">棒のように直線的なデザイン。どこかやんちゃなイメージ。</div>
+                        <div class="sample-text stick">こんにちは世界</div>
+                        <div class="sample-english stick">Hello World</div>
+                        <div class="sample-numbers stick">0123456789</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 手書き・カジュアル系 -->
+            <div class="category-section">
+                <h3 class="category-title">手書き・カジュアル系（親しみやすい印象）</h3>
+                <div class="fonts-grid">
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Kiwi Maru</div>
+                        <div class="font-description">丸みのある手書き風フォント。親しみやすさと可読性を両立。</div>
+                        <div class="sample-text kiwi-maru">こんにちは世界</div>
+                        <div class="sample-english kiwi-maru">Hello World</div>
+                        <div class="sample-numbers kiwi-maru">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Yusei Magic</div>
+                        <div class="font-description">マジックペン風の手書きフォント。極太で力強く柔らか。</div>
+                        <div class="sample-text yusei-magic">こんにちは世界</div>
+                        <div class="sample-english yusei-magic">Hello World</div>
+                        <div class="sample-numbers yusei-magic">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Klee One</div>
+                        <div class="font-description">鉛筆やペンで書いた手書き風。毛筆とは違った独特な雰囲気。</div>
+                        <div class="sample-text klee-one">こんにちは世界</div>
+                        <div class="sample-english klee-one">Hello World</div>
+                        <div class="sample-numbers klee-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Potta One</div>
+                        <div class="font-description">ポップな筆文字フォント。手書き風のかわいいデザイン。</div>
+                        <div class="sample-text potta-one">こんにちは世界</div>
+                        <div class="sample-english potta-one">Hello World</div>
+                        <div class="sample-numbers potta-one">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Hachi Maru Pop</div>
+                        <div class="font-description">1980年代の丸文字をベース。現代風モダンな手書きフォント。</div>
+                        <div class="sample-text hachi-maru-pop">こんにちは世界</div>
+                        <div class="sample-english hachi-maru-pop">Hello World</div>
+                        <div class="sample-numbers hachi-maru-pop">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge handwriting-badge">Hand</div>
+                        <div class="font-name">Mochiy Pop P One</div>
+                        <div class="font-description">ポップで親しみやすいデザイン。カジュアルな印象。</div>
+                        <div class="sample-text mochiy-pop">こんにちは世界</div>
+                        <div class="sample-english mochiy-pop">Hello World</div>
+                        <div class="sample-numbers mochiy-pop">0123456789</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ユニーク・実験的 -->
+            <div class="category-section">
+                <h3 class="category-title">ユニーク・実験的（特別な用途に）</h3>
+                <div class="fonts-grid">
+                    <div class="font-card">
+                        <div class="category-badge unique-badge">Unique</div>
+                        <div class="font-name">DotGothic16</div>
+                        <div class="font-description">レトロなドットフォント。ピクセルアートやゲーム風デザインに。</div>
+                        <div class="sample-text dotgothic16">こんにちは世界</div>
+                        <div class="sample-english dotgothic16">Hello World</div>
+                        <div class="sample-numbers dotgothic16">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge unique-badge">Unique</div>
+                        <div class="font-name">Palette Mosaic</div>
+                        <div class="font-description">半円・四角・三角のピースで制作されたモザイク風フォント。</div>
+                        <div class="sample-text palette-mosaic">こんにちは世界</div>
+                        <div class="sample-english palette-mosaic">Hello World</div>
+                        <div class="sample-numbers palette-mosaic">0123456789</div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="category-badge unique-badge">Unique</div>
+                        <div class="font-name">Otomanopee One</div>
+                        <div class="font-description">漫画の描き文字をイメージ。オノマトペ表現に最適。</div>
+                        <div class="sample-text otomanopee-one">こんにちは世界</div>
+                        <div class="sample-english otomanopee-one">Hello World</div>
+                        <div class="sample-numbers otomanopee-one">0123456789</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2 class="stats-title">フォント情報</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">64</div>
+                    <div class="stat-label">日本語書体数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">フォントカテゴリ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">商用利用可能</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Page made by Sakura RinCo., Ltd.</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchTheme(theme) {
+            document.body.className = theme;
+            localStorage.setItem('selectedTheme', theme);
+        }
+
+        // 検索機能
+        function initializeSearch() {
+            const searchInput = document.getElementById('fontSearch');
+            const clearButton = document.getElementById('clearSearch');
+            const searchResults = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+            const fontCards = document.querySelectorAll('.font-card');
+            const categorySections = document.querySelectorAll('.category-section');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    // 検索語が空の場合、すべて表示
+                    fontCards.forEach(card => card.classList.remove('hidden'));
+                    categorySections.forEach(section => section.classList.remove('hidden'));
+                    searchResults.style.display = 'none';
+                    noResults.style.display = 'none';
+                    clearButton.style.display = 'none';
+                    return;
+                }
+
+                clearButton.style.display = 'inline-block';
+                let visibleCount = 0;
+
+                // フォントカードの検索
+                fontCards.forEach(card => {
+                    const fontName = card.querySelector('.font-name').textContent.toLowerCase();
+                    const fontDescription = card.querySelector('.font-description').textContent.toLowerCase();
+                    const categoryBadge = card.querySelector('.category-badge').textContent.toLowerCase();
+                    
+                    const matches = fontName.includes(searchTerm) || 
+                                  fontDescription.includes(searchTerm) || 
+                                  categoryBadge.includes(searchTerm);
+                    
+                    if (matches) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // カテゴリセクションの表示/非表示制御
+                categorySections.forEach(section => {
+                    const visibleCardsInSection = section.querySelectorAll('.font-card:not(.hidden)').length;
+                    if (visibleCardsInSection > 0) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+
+                // 検索結果の表示
+                if (visibleCount > 0) {
+                    searchResults.textContent = `${visibleCount}件のフォントが見つかりました`;
+                    searchResults.style.display = 'block';
+                    noResults.style.display = 'none';
+                } else {
+                    searchResults.style.display = 'none';
+                    noResults.style.display = 'block';
+                }
+            }
+
+            function clearSearch() {
+                searchInput.value = '';
+                performSearch();
+                searchInput.focus();
+            }
+
+            // イベントリスナー
+            searchInput.addEventListener('input', performSearch);
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+            clearButton.addEventListener('click', clearSearch);
+        }
+
+        // 初期化
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'theme1';
+            switchTheme(savedTheme);
+            initializeSearch();
+        }
+    </script>
+</body>
+</html>
